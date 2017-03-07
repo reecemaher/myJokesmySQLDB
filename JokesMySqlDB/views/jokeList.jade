@@ -1,0 +1,22 @@
+extends masterPage
+
+block content
+    div.row
+      div.col-sm-12
+        h1 Our Jokes
+    div.row
+      div.col-sm-2.col-sm-offset-10
+        a(href='/admin/createJoke') Create a new joke
+    div.row
+      div.col-sm-12
+        for joke, i in jokes
+          div.row
+            div.col-sm-8.col-sm-offset-2
+              p 
+                small #{new Date(joke.date).toLocaleDateString()}
+              p #{joke.text}
+          div.row
+            div.col-sm-1.col-sm-offset-2
+              a(href='/admin/delete/#{joke.id}') Delete
+            div.col-sm-1
+              a(href='/admin/edit?id=#{joke.id}') Edit

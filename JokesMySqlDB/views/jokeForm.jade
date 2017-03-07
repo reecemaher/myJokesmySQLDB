@@ -1,0 +1,22 @@
+extends masterPage
+
+block content
+    - var formMethod = '/admin/newJoke'
+    - var jokeText = ''
+    
+    if joke
+      - formMethod = '/admin/editJoke'
+      - jokeText = joke.joke
+    
+    div.row.jokeForm
+      div.col-sm-8.col-sm-offset-2
+        form.form-horizontal(method='POST', action='#{formMethod}')
+          div.form-group
+            label.col-sm-3(for='theJoke') Enter your joke
+            div.col-sm-9
+              textarea#theJoke.form-control(name='theJoke') #{jokeText}
+              if joke
+                input(type='hidden', name='id', value='#{joke.id}')
+          div.form-group
+            div.col-sm-1.col-sm-offset-3
+              input.btn.btn-default(type='submit', name='Add')
